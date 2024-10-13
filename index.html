@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 검색 사이트</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>영화 검색</h1>
+        <input type="text" id="searchInput" placeholder="영화를 검색하세요...">
+        <button id="showBookmarksBtn">북마크 보기</button>
+    </header>
+
+    <section id="movieList"></section>
+
+    <!-- Movie Detail Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <h2 id="modalTitle"></h2>
+            <p id="modalOverview"></p>
+            <p><strong>개봉일:</strong> <span id="modalReleaseDate"></span></p>
+            <p><strong>평점:</strong> <span id="modalRating"></span></p>
+            <button id="bookmarkBtn">북마크 추가</button>
+            <button id="removeBookmarkBtn">북마크 취소</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
