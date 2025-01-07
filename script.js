@@ -122,13 +122,12 @@ function updateBookmarkButtons() {
 // Show bookmarked movies
 showBookmarksBtn.addEventListener('click', () => {
     let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    
+
     if (bookmarks.length === 0) {
         alert('북마크된 영화가 없습니다.');
         return;
     }
 
-    // 북마크된 영화 목록 가져오기
     const promises = bookmarks.map(id => {
         const movieDetailURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=ko`;
         return fetch(movieDetailURL).then(response => response.json());
@@ -136,12 +135,23 @@ showBookmarksBtn.addEventListener('click', () => {
 
     Promise.all(promises)
         .then(movies => {
-            displayMovies(movies); // 북마크된 영화들만 표시
+            displayMovies(movies);
+            showBookmarksBtn.style.display = 'none'; // 북마크 보기 버튼 숨기기
+            showAllMoviesBtn.style.display = 'inline-block'; // "모든 영화 보기" 버튼 표시
         })
         .catch(error => {
             console.error('북마크된 영화를 불러오는 중 오류가 발생했습니다:', error);
         });
+
+    const showAllMoviesBtn = document.getElementById('showAllMoviesBtn');
+
+    showAllMoviesBtn.addEventListener('click', () => {
+        fetchMovies(API_URL); // 인기 영화 다시 가져오기
+        showAllMoviesBtn.style.display = 'none'; // 버튼 숨기기
+        showBookmarksBtn.style.display = 'inline-block'; // 북마크 보기 버튼 다시 표시
+    });
 });
+
 
 // Search for movies by title
 searchInput.addEventListener('input', () => {

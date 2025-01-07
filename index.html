@@ -11,12 +11,13 @@
         <h1>영화 검색</h1>
         <input type="text" id="searchInput" placeholder="영화를 검색하세요...">
         <button id="showBookmarksBtn">북마크 보기</button>
+        <button id="showAllMoviesBtn" style="display: none;">모든 영화 보기</button>
     </header>
 
     <section id="movieList"></section>
 
     <!-- Movie Detail Modal -->
-    <div id="movieModal" class="modal">
+    <div id="movieModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close">&times;</span>
             <img id="modalImage" src="" alt="">
